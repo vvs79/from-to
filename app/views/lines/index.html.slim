@@ -1,0 +1,85 @@
+- provide(:title, 'All lines')
+.container.content-area
+  br
+  = form_for :line, url: select_line_path, method: :get do |f|
+    | From 
+    = f.select(:from, options_for_select('A'..'F'))
+    span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    | To 
+    = f.select(:to, options_for_select('A'..'F'))
+    span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    = f.submit 'GO', class:'btn btn-info'
+  br
+  | #{@from_to}
+
+  - unless @from_to == ''
+    br
+    | всі можливі лінії = #{@arr_all}
+    //br
+    //| arr_km = #{@arr_km}
+    br
+    //| min_kilometers_from_to = #{@min_km_from_to}
+    | мінімальний шлях = #{@min_km}км через #{@min_km_from_to}
+    //br
+    //| arr_min = #{@arr_min}
+    br
+    //| min_minutes_from_to = #{@min_min_from_to}
+    | мінімум часу = #{@min_min}хв через #{@min_min_from_to}
+    //br
+    //| min_kilometers = #{@min_km}
+    //br
+    //| min_minutes = #{@min_min}
+
+
+
+
+  h3.center
+    | All lines
+  .center
+    = image_tag "ab.jpg", width: '70%'
+  .row
+    //= render 'layouts/messages'
+  .center
+    .table-responsive
+      table.table.table-bordered.table-hover
+        tr.active
+          th.width_30
+            h5 Line
+          th.width_35
+            h5 Kilometers
+          th.width_35
+            h5 Minutes
+        = render 'line'
+  - if @lines.count > 10
+    br
+    .col-sm-12
+      .center
+        = will_paginate
+  br
+  //= form_for @way, html: { multipart: true} do |f|
+  //= form_tag({ controller: 'lines', action: 'select_line' }, method: 'get') do
+  //= form_tag('/select_line', method: :get) do
+  //.center
+    //= f.text_field :from
+    //| From 
+    //= f.select(:from, options_for_select('A'..'F'))
+    //= select_tag(@from, options_for_select([['A', 1], ['B', 2], ['C', 3], ['D', 4], ['E', 5], ['F', 6]], 'A'))
+    //= params[:from]
+    //= @from
+    //span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    //| To 
+    //= select_tag(:to, options_for_select([['A', 'A'], ['B', 'B'], ['C', 'C'], ['D', 'D'], ['E', 'E'], ['F', 'F']], 'B'))
+    //= f.select(:to, options_for_select([['A', 1], ['B', 2], ['C', 3], ['D', 4], ['E', 5], ['F', 6]], 2))
+    //span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    //- params['from'].each do |f|
+      //= f.to_s
+    //- if params[:from].nil?
+      //| NIL
+    //- else
+      //| NOT NIL 
+    //- @l1 = 'A' if @l1.nil?
+    //- @l2 = 'B' if @l2.nil?
+    //= link_to "GO", select_line_path, class:"btn btn-info"
+    //= f.submit 'GO', class:'btn btn-info'
+    //= f.submit
+br

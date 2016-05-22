@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  line: MyString
+  kilometers: 1
+  minutes: 1
+
+two:
+  line: MyString
+  kilometers: 1
+  minutes: 1
